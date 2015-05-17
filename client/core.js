@@ -42,6 +42,8 @@ angular.module("riskApp",['ngAnimate','ui.router'])
 	  	$scope.riskFactors = riskFactors;
 	  	$scope.projectRisks = projectRisks;
 
+	  	$scope.prioritizationDisabled = true;
+
 	  	$scope.defineprojectRisks = function () {
 	  		$scope.technicalRisks = [];
 	  		$scope.costRisks = [];
@@ -79,6 +81,11 @@ angular.module("riskApp",['ngAnimate','ui.router'])
 	  	$scope.analyzedRisks = [];
 
 	  	$scope.toPrioritization = function (item) {
+
+	  		if(item.probability != undefined && item.consequences != undefined ) {
+	  			item.impact = item.probability * item.consequences;
+	  		}
+
 	  		$scope.analyzedRisks.unshift(item);
 
 
@@ -87,13 +94,19 @@ angular.module("riskApp",['ngAnimate','ui.router'])
 	  		}
 
 	  		console.log(item);
+
+	  		/* check if all risk are ready for prioritization */
+	  		if($scope.projectRisks.length==0 && $scope.analyzedRisks.length!=0) 
+	  			$scope.prioritizationDisabled = false; 
+	  				else $scope.prioritizationDisabled = true;
+
 	  	} 
 	  	$scope.backToProjectRisks = function (item) {
 	  		$scope.projectRisks.unshift(item);
 	  		for(var i = 0; i < $scope.analyzedRisks.length; i++) {
 	  			if($scope.analyzedRisks[i].description == item.description) $scope.analyzedRisks.splice(i,1);
 	  		}
-
+	  		$scope.prioritizationDisabled = true;
 	  	}
 
 

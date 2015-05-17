@@ -1,7 +1,7 @@
 
 
 
-<div class="col-md-8" >
+<div class="col-md-6" >
 
 <legend>Аналіз ризиків</legend>
 <div ng-repeat="risk in projectRisks" ng-show="areRisks">
@@ -42,11 +42,29 @@
 
 </div>
 
-<div class="col-md-4">
+<div class="col-md-6">
 	<legend>Приорітизувати ризики:</legend>
-	<div ng-repeat="risk in analyzedRisks">
-		<span ng-click="backToProjectRisks(risk)">{{risk.description}}</span>
-	</div>
+	
+	<table data-toggle="table"  class="table table-hover" data-height="299">
+
+    <thead>
+    	<tr>
+    		<th>Опис ризику</th>
+    		<th>Ймовірність</th>
+    		<th>Збитки</th>
+    		<th>Вплив</th>
+    	</tr>
+        <tr ng-repeat="risk in analyzedRisks" >
+            <th data-field="id"><span ng-click="backToProjectRisks(risk)">{{risk.description}}</span></div></th>
+            <th data-field="name">{{risk.probability}}</th>
+            <th data-field="price">{{risk.consequences}}</th>
+            <th data-field="price">{{risk.impact}}</th>
+            
+        </tr>
+    </thead>
+</table>
+
+<button class="btn btn-primary" ng-disabled="prioritizationDisabled">Приорітизувати ризики</button>
 	
 </div>
 
