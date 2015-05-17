@@ -31,6 +31,9 @@ angular.module('riskApp').factory('projectRisks',function(){
 				}
 			}
 			console.log(risks);
+			console.log("sort ===");
+			risks.sort(function(a,b){ return b.impact - a.impact  });
+			console.log(risks);
 		}
 	}
 });

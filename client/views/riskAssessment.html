@@ -67,7 +67,7 @@
     		<th>Збитки</th>
     		<th>Вплив</th>
     	</tr>
-        <tr ng-repeat="risk in analyzedRisks" >
+        <tr ng-repeat="risk in analyzedRisks" ng-class="risk.prioritet" >
             <th data-field="id"><span ng-click="backToProjectRisks(risk)">{{risk.description}}</span></div></th>
             <th data-field="name">{{risk.probability}}</th>
             <th data-field="price">{{risk.consequences}}</th>
