@@ -1,0 +1,20 @@
+risk assessment
+
+<div ng-repeat="risk in projectRisks" >
+	<br>
+	Опис
+	<br>
+	<span>{{risk.description}}</span>
+	<br>
+	Ймовірність:
+	<input type="text" ng-model="risk.probability"><br>
+	<br>
+	Вплив:
+	<input type="text" ng-model="risk.consequences"><br>
+	Величина ризику:
+	<input type="text" ng-model="risk.impact"><br>
+	<button class="btn btn-primary" >зберегти</button>
+	
+</div>
+
+<button class="btn btn-primary" ng-click="getProjectRisks()">отримати ризики</button>

@@ -1,0 +1,8 @@
+<div ng-repeat="r in potentialRisks">
+		<input type="checkbox" ng-model="r.checked" ng-checked="r.checked" >{{r.description}}		
+	</div>
+
+
+	<button class="btn btn-primary glyphicon glyphicon-ok" ng-click="defineprojectRisks()">Далі</button>
+	<button class="btn btn-primary glyphicon glyphicon-ok" ng-click="checkAllRisks()">відмітити всі</button>
+	<button class="btn btn-primary glyphicon glyphicon-ok" ng-click="uncheckAllRisks()">виключити всі</button>

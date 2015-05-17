@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="riskApp">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script src="bower_components/angular/angular.js" ></script>
+	<script src="bower_components/jquery/dist/jquery.min.js" ></script>
+	<script src="bower_components/bootstrap/dist/js/bootstrap.js" ></script>
+	<script src="bower_components/angular-ui-router/release/angular-ui-router.js" ></script>
+	<script src="bower_components/angular-animate/angular-animate.js" ></script>
+	<script src="core.js" ></script>
+	<script src="servises/potentialRisks.js"></script>
+	<script src="servises/riskFactors.js"></script>
+	<script src="servises/projectRisks.js"></script>
+	
+
+
+	<link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css">
+	
+
+</head>
+<body ng-controller="mainCtrl" >
+	
+	
+	<div class="container">
+		<div ui-view> </div>
+	</div>
+
+	<!--
+	<h1>define potential risk factors</h1><br>
+	<div ng-repeat="fact in riskFactors" >
+		<input type="checkbox" ng-model="fact.checked" ng-checked="fact.checked"  >{{fact.description}} () {{fact.checked}}
+	</div>
+	<button class="btn btn-primary glyphicon glyphicon-ok" ng-click="applyFactors()">Відмітити</button>
+	<button class="btn btn-primary glyphicon glyphicon-ok" ng-click="checkAllFactors()">відмітити всі</button>
+	<button class="btn btn-primary glyphicon glyphicon-ok" ng-click="uncheckAllFactors()">виключити всі</button>
+	<br><br><br><br><br>
+	
+	
+	<div ng-repeat="r in potentialRisks">
+		<input type="checkbox" ng-model="r.checked" ng-checked="r.checked" >{{r.description}}		
+	</div>
+
+
+	<button class="btn btn-primary glyphicon glyphicon-ok" ng-click="defineprojectRisks()">Далі</button>
+	<button class="btn btn-primary glyphicon glyphicon-ok" ng-click="checkAllRisks()">відмітити всі</button>
+	<button class="btn btn-primary glyphicon glyphicon-ok" ng-click="uncheckAllRisks()">виключити всі</button>
+
+	-->
+
+
+
+</body>
+</html>

@@ -1,0 +1,8 @@
+<h1>define potential risk factors</h1><br>
+	<div ng-repeat="fact in riskFactors" >
+		<input type="checkbox" ng-model="fact.checked" ng-checked="fact.checked"  >{{fact.description}} () {{fact.checked}}
+	</div>
+	<button class="btn btn-primary glyphicon glyphicon-ok" ng-click="applyFactors()">Відмітити</button>
+	<button class="btn btn-primary glyphicon glyphicon-ok" ng-click="checkAllFactors()">відмітити всі</button>
+	<button class="btn btn-primary glyphicon glyphicon-ok" ng-click="uncheckAllFactors()">виключити всі</button>
+	<br><br><br><br><br>
