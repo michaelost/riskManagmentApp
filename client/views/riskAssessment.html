@@ -1,4 +1,8 @@
-risk assessment
+
+
+
+<div class="col-md-8" >
+
 <legend>Аналіз ризиків</legend>
 <div ng-repeat="risk in projectRisks" ng-show="areRisks">
 
@@ -10,7 +14,7 @@ risk assessment
 
             	
             <label for="inputEmail">Ймовірність</label>
-            <input ng-model="risk.probability" ng-pattern=/^0.[0-9]+$/ valid-username name="username"  type="text" class="form-control" id="inputProb" required >
+            <input ng-model="risk.probability" ng-pattern=/^0.[0-9]+$/ valid-username name="username"  type="text" class="form-control" id="inputProb" required>
         	
         	 <p ng-show="riskForm.username.$invalid && !fiskForm.username.$pristine" class="help-block">invalid </p>
 
@@ -18,16 +22,16 @@ risk assessment
 
 	
 			<label  for="inputEmail">Вплив</label>
-            <input  ng-model="risk.consequences" ng-pattern=/^0.[0-9]+$/  type="text" name="con" class="form-control" id="inputProb" required>
+            <input  ng-model="risk.consequences" ng-pattern=/^0.[0-9]+$/  type="text" name="con" class="form-control" id="inputProb" required  >
              <p ng-show="riskForm.con.$invalid && !riskForm.con.$pristine" class="help-block">invalid</p>
 
 
-
+			<!--
             <label  for="inputEmail">Величина ризику</label>
-            <input  ng-model="risk.impact"  type="text" class="form-control" id="inputProb" >
+            <input  ng-model="risk.impact" ng-disabled="true"  type="text" class="form-control" id="inputProb" >
+			-->
 
-
-				<button class="btn btn-primary" ng-disabled="riskForm.$invalid" >зберегти</button>
+				<button class="btn btn-primary" ng-disabled="riskForm.$invalid" ng-click="toPrioritization(risk)" >зберегти</button>
         	</div>
         </div>
 	
@@ -35,6 +39,17 @@ risk assessment
 
 
 </div>
+
+</div>
+
+<div class="col-md-4">
+	<legend>Приорітизувати ризики:</legend>
+	<div ng-repeat="risk in analyzedRisks">
+		<span ng-click="backToProjectRisks(risk)">{{risk.description}}</span>
+	</div>
+	
+</div>
+
 
 <div style="clear:both">
 <button class="btn btn-primary" ng-click="getProjectRisks()">отримати ризики</button>

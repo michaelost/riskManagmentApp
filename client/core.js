@@ -76,6 +76,27 @@ angular.module("riskApp",['ngAnimate','ui.router'])
 	  		
 	  	}
 
+	  	$scope.analyzedRisks = [];
+
+	  	$scope.toPrioritization = function (item) {
+	  		$scope.analyzedRisks.unshift(item);
+
+
+	  		for(var i = 0; i < $scope.projectRisks.length; i++) {
+	  			if($scope.projectRisks[i].description == item.description) $scope.projectRisks.splice(i,1);
+	  		}
+
+	  		console.log(item);
+	  	} 
+	  	$scope.backToProjectRisks = function (item) {
+	  		$scope.projectRisks.unshift(item);
+	  		for(var i = 0; i < $scope.analyzedRisks.length; i++) {
+	  			if($scope.analyzedRisks[i].description == item.description) $scope.analyzedRisks.splice(i,1);
+	  		}
+
+	  	}
+
+
 	  	$scope.getProjectRisks = function () {
 	  		$scope.areRisks = true;
 	  		$scope.projectRisks = projectRisks.getRisks();
