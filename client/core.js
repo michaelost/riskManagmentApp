@@ -44,6 +44,17 @@ angular.module("riskApp",['ngAnimate','ui.router'])
 
 	  	$scope.prioritizationDisabled = true;
 
+	  	$scope.riskCounter = 0;
+
+	  	$scope.next = function() {
+	  		if($scope.riskCounter == $scope.projectRisks.length-1) $scope.riskCounter = 0;
+	  			else $scope.riskCounter++;
+	  	}
+	  	$scope.prev = function () {
+	  		if($scope.riskCounter == 0) $scope.riskCounter = $scope.projectRisks.length-1;
+	  			else $scope.riskCounter--;
+	  	}
+
 	  	$scope.defineprojectRisks = function () {
 	  		$scope.technicalRisks = [];
 	  		$scope.costRisks = [];
