@@ -1,20 +1,41 @@
 risk assessment
+<legend>Аналіз ризиків</legend>
+<div ng-repeat="risk in projectRisks" ng-show="areRisks">
 
-<div ng-repeat="risk in projectRisks" >
-	<br>
-	Опис
-	<br>
-	<span>{{risk.description}}</span>
-	<br>
-	Ймовірність:
-	<input type="text" ng-model="risk.probability"><br>
-	<br>
-	Вплив:
-	<input type="text" ng-model="risk.consequences"><br>
-	Величина ризику:
-	<input type="text" ng-model="risk.impact"><br>
-	<button class="btn btn-primary" >зберегти</button>
+<form  name="riskForm" class="form form-horizontal" novalidate>
+		<legend>{{risk.description}}</legend>
+		<div class="col-md-4">
+
+			<div class="form-group" ng-class="{ 'has-error' : riskForm.name.$invalid && !riskForm.name.$pristine }">
+
+            	
+            <label for="inputEmail">Ймовірність</label>
+            <input ng-model="risk.probability" ng-pattern=/^0.[0-9]+$/ valid-username name="username"  type="text" class="form-control" id="inputProb" required >
+        	
+        	 <p ng-show="riskForm.username.$invalid && !fiskForm.username.$pristine" class="help-block">invalid </p>
+
+
+
 	
+			<label  for="inputEmail">Вплив</label>
+            <input  ng-model="risk.consequences" ng-pattern=/^0.[0-9]+$/  type="text" name="con" class="form-control" id="inputProb" required>
+             <p ng-show="riskForm.con.$invalid && !riskForm.con.$pristine" class="help-block">invalid</p>
+
+
+
+            <label  for="inputEmail">Величина ризику</label>
+            <input  ng-model="risk.impact"  type="text" class="form-control" id="inputProb" >
+
+
+				<button class="btn btn-primary" ng-disabled="riskForm.$invalid" >зберегти</button>
+        	</div>
+        </div>
+	
+</form>
+
+
 </div>
 
+<div style="clear:both">
 <button class="btn btn-primary" ng-click="getProjectRisks()">отримати ризики</button>
+</div>

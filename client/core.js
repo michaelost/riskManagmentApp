@@ -32,7 +32,7 @@ angular.module("riskApp",['ngAnimate','ui.router'])
 
 	.controller("mainCtrl",['$scope','potentialRisks','riskFactors','$rootScope','projectRisks',
 		function($scope,potentialRisks,riskFactors,$rootScope,projectRisks) {
-		
+		$scope.areRisks = false;
 		$scope.factors = [];
 		$scope.technicalRisks = [];
 		$scope.costRisks = [];
@@ -77,6 +77,7 @@ angular.module("riskApp",['ngAnimate','ui.router'])
 	  	}
 
 	  	$scope.getProjectRisks = function () {
+	  		$scope.areRisks = true;
 	  		$scope.projectRisks = projectRisks.getRisks();
 	  	}
 	  	
