@@ -6,6 +6,31 @@ angular.module('riskApp').factory('projectRisks',function(){
 		},
 		setRisks: function (array) {
 			risks = array;
+		},
+		prioritize: function() {
+
+			var min = risks[0].impact, max = risks[0].impact;
+
+			for(var i = 0; i < risks.length; i++) {
+				if (risks[i].impact > max ) max = risks[i].impact;
+				if (risks[i].impact < min ) min = risks[i].impact;
+			}
+
+			for(var i = 0; i < risks.length; i++) {
+				if (risks[i].impact >= min && risks[i].impact <= ( min + (max-min)/3  )   ) risks[i].prioritet="low";
+
+					
+				if (risks[i].impact > ( min + (max-min)/3  ) && risks[i].impact <= ( min + 2*(max-min)/3  )    ) risks[i].prioritet="medium";
+				if (risks[i].impact > ( min + 2*(max-min)/3  ) && risks[i].impact <= max ) risks[i].prioritet = "high";
+				
+			}
+
+			for(var i = 0; i < risks.length; i++) {
+				for(var j = i; j < risks.length; j++) {
+
+				}
+			}
+			console.log(risks);
 		}
 	}
 });

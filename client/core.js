@@ -89,6 +89,16 @@ angular.module("riskApp",['ngAnimate','ui.router'])
 	  		
 	  	}
 
+
+	  	$scope.prioritization = function () {
+	  		projectRisks.setRisks($scope.analyzedRisks);
+	  		
+
+	  		console.log(projectRisks.getRisks());
+	  		projectRisks.prioritize();
+	  	}
+
+
 	  	$scope.analyzedRisks = [];
 
 	  	$scope.toPrioritization = function (item) {
