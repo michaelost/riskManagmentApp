@@ -1,11 +1,28 @@
+function riskMeasures(n) {
+	var arr = [],prob,cons;
+	for(var i = 0; i < n; i++) {
+		prob =  "0." + Math.floor((Math.random() * 9) + 1);
+		prob += Math.floor((Math.random() * 9) + 1);
+		cons = "0." + Math.floor((Math.random() * 9) + 1);
+		cons += Math.floor((Math.random() * 9) + 1);
+		arr.push({
+			prob : prob,
+			cons : cons
+		});
+	}
+	return arr;
+}
+console.log(riskMeasures(100));
+
+
+
+
 describe('Protractor Demo App', function() {
 
 	beforeEach(function () {
 		browser.get('http://localhost:5000/#/main');
 		
 	});
-
-
 	it('should have a title', function() {
 		var ele = by.css('.container h1');
 		expect(browser.isElementPresent(ele)).toBe(true);
@@ -56,11 +73,46 @@ describe('Protractor Demo App', function() {
 					element.all(by.css('.getRisks')).get(0).click().then(function () {
 					var text = element.all(by.css('span.riskLength')).get(0).getText();
 					expect(text).toEqual("42");
+					
+					var riskProbForm  = element.all(by.css('.probability')).get(0);
+						riskConsForm =  element.all(by.css('.cons')).get(0);
+
+
+
+					var testArray = riskMeasures(parseInt(10)), tempObj = {}, secondTestArray = [];
+					
+						
+
+					while(testArray.length){
+						
+						tempObj = testArray.pop();
+						secondTestArray.push(tempObj);
+						
+						riskProbForm.sendKeys(tempObj.prob);
+						riskConsForm.sendKeys(tempObj.cons);
+						
+						element.all(by.css('.save')).get(0).click().then( function() {
+							
+						});
+											
+
+					}
+					
+					
+					
+					browser.pause(6000);
+
+
 					});
 				});
 			});
 		});
 	});
+
+
+
+
+
 
 
 

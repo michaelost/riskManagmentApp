@@ -3,7 +3,7 @@
 
 <div class="col-md-6" >
 
-<legend>Ризиків: {{projectRisks.length}}</legend>
+<legend>Ризиків: <span class="riskLength" >{{projectRisks.length}}</span></legend>
 <div ng-show="areRisks && projectRisks.length">
 
 <form  name="riskForm" class="form form-horizontal" novalidate>
@@ -14,7 +14,7 @@
 
             	
             <label for="inputEmail">Ймовірність</label>
-            <input ng-model="projectRisks[riskCounter].probability" ng-pattern=/^0.[0-9]+$/ valid-username name="username"  type="text" class="form-control" id="inputProb" required>
+            <input ng-model="projectRisks[riskCounter].probability" ng-pattern=/^0.[0-9]+$/ valid-username name="username"  type="text" class="form-control probability" id="inputProb" required>
         	
         	 <p ng-show="riskForm.username.$invalid && !fiskForm.username.$pristine" class="help-block">invalid </p>
 
@@ -22,7 +22,7 @@
 
 	
 			<label  for="inputEmail">Вплив</label>
-            <input  ng-model="projectRisks[riskCounter].consequences" ng-pattern=/^0.[0-9]+$/  type="text" name="con" class="form-control" id="inputProb" required  >
+            <input  ng-model="projectRisks[riskCounter].consequences" ng-pattern=/^0.[0-9]+$/  type="text" name="con" class="form-control cons" id="inputProb" required  >
              <p ng-show="riskForm.con.$invalid && !riskForm.con.$pristine" class="help-block">invalid</p>
 
 
@@ -31,7 +31,7 @@
             <input  ng-model="risk.impact" ng-disabled="true"  type="text" class="form-control" id="inputProb" >
 			-->
 <br>
-<button class="btn btn-primary" ng-disabled="riskForm.$invalid" ng-click="toPrioritization(projectRisks[riskCounter])" >зберегти</button>
+<button class="btn btn-primary save" ng-disabled="riskForm.$invalid" ng-click="toPrioritization(projectRisks[riskCounter])" >зберегти</button>
         	</div>
         </div>
 
@@ -89,5 +89,5 @@
 <div style="clear:both">
 <br>
 
-<button class="btn btn-primary" ng-hide="projectRisks.length == 0 && analyzedRisks.length!=0" ng-click="getProjectRisks()">отримати ризики</button>
+<button class="btn btn-primary getRisks" ng-hide="projectRisks.length == 0 && analyzedRisks.length!=0" ng-click="getProjectRisks()">отримати ризики</button>
 </div>
