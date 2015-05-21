@@ -70,6 +70,26 @@ angular.module('riskApp').factory("potentialRisks",function(){
 		},
 
 		{
+			description: "неможливість в повній мірі виконати функціональність продукту обраними засобами",
+			checked: undefined,
+			probability: undefined,
+			consequences: undefined,
+			impact: undefined,
+			category: 'rs'
+		},
+
+		{
+			description: "можливість порушення встановлених термінів етапів життєвого циклу",
+			checked: undefined,
+			probability: undefined,
+			consequences: undefined,
+			impact: undefined,
+			category: 'rs'
+		},
+
+
+
+		{
 			description: "швидкість виявлення дефектів в системі нижче раніше запланованої",
 			checked: undefined,
 			probability: undefined,
