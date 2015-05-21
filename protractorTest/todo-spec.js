@@ -69,38 +69,30 @@ describe('Protractor Demo App', function() {
 		element.all(by.css('.btn')).get(1).click().then(function () {
 			element.all(by.css('.btn')).get(0).click().then(function () {
 				element.all(by.css('a')).get(2).click().then(function () {
-					browser.pause(5000);
+					
+					var len;
 					element.all(by.css('.getRisks')).get(0).click().then(function () {
 					var text = element.all(by.css('span.riskLength')).get(0).getText();
 					expect(text).toEqual("42");
+
 					
 					var riskProbForm  = element.all(by.css('.probability')).get(0);
 						riskConsForm =  element.all(by.css('.cons')).get(0);
-
-
-
-					var testArray = riskMeasures(parseInt(10)), tempObj = {}, secondTestArray = [];
 					
+						riskProbForm.clear();
+						riskConsForm.clear();
+					
+					var testArray = riskMeasures(42), tempObj = {}, secondTestArray = [];
 						
-
-					while(testArray.length){
-						
+					while(testArray.length){	
 						tempObj = testArray.pop();
 						secondTestArray.push(tempObj);
-						
 						riskProbForm.sendKeys(tempObj.prob);
 						riskConsForm.sendKeys(tempObj.cons);
-						
 						element.all(by.css('.save')).get(0).click().then( function() {
-							
 						});
 											
-
 					}
-					
-					
-					
-					browser.pause(6000);
 
 
 					});
