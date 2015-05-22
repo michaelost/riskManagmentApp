@@ -135,7 +135,7 @@ describe('Protractor Demo App', function() {
 
 						
 						var nArray = sort(secondTestArray);
-					
+							console.log(nArray);
 						for(var i = 0; i < nArray.length; i++) (function(i){
 							expect(thS.get(i).getText()).toEqual(nArray[i].prob);
 							expect(thSCons.get(i).getText()).toEqual(nArray[i].cons);
