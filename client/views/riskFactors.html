@@ -1,6 +1,6 @@
-<h1 class="glyphicon glyphicon-certificate" >Оберіть джерела ризику</h1><br>
+<h1 class="glyphicon" >Оберіть джерела ризику</h1><br>
 	<div ng-repeat="fact in riskFactors" >
-		<input type="checkbox" ng-model="fact.checked" ng-checked="fact.checked"  >{{fact.description}} () {{fact.checked}}
+		<input type="checkbox" ng-model="fact.checked" ng-checked="fact.checked"  >{{fact.description}}
 	</div>
 	<button class="btn btn-primary glyphicon glyphicon-list applyFactors" ng-click="applyFactors()">Відмітити</button>
 	<button class="btn btn-primary glyphicon glyphicon-paperclip checkAllFactors " ng-click="checkAllFactors()">відмітити всі</button>

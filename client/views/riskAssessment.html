@@ -91,3 +91,35 @@
 
 <button class="btn btn-primary getRisks glyphicon glyphicon-save" ng-hide="projectRisks.length == 0 && analyzedRisks.length!=0" ng-click="getProjectRisks()">отримати ризики</button>
 </div>
+
+<!-- //risk countermeasures -->
+<div class="col-md-6">
+    <legend>Визначення заходів для ризиків</legend>
+    Поточний ризик:<br> 
+    {{analyzedRisks[analyzedRiskIndex].description}}<br>
+    Обраний захід:
+    <legend>{{selectedMeasure}}</legend>
+
+     <button class="btn btn-primary glyphicon glyphicon-chevron-left" ng-click="analyzedRiskPrev()">попередній</button>
+     <button class="btn btn-primary glyphicon glyphicon-chevron-right" ng-click="analyzedRiskNext()">наступний</button>
+     <button class="btn btn-primary glyphicon glyphicon-ok" ng-click="applyMeasure(analyzedRiskIndex)">застосувати</button>
+     
+    
+    <form name="measures">
+        <div class="list-group">
+            <div  >
+                <a ng-repeat="r in counterMeasures" class="list-group-item selectMeasure" ng-click="selectMeasure(r)" >{{r}}</a>
+            </div>        
+        </div>
+        
+        
+        
+    </form>
+
+</div>
+
+<div class="col-md-6">
+<legend>Заходи з пом’якшення</legend>
+<div ng-repeat="r in analyzedRisks">{{r.measure}}</div>
+
+</div>

@@ -30,8 +30,8 @@ angular.module("riskApp",['ngAnimate','ui.router'])
 			
 	})
 
-	.controller("mainCtrl",['$scope','potentialRisks','riskFactors','$rootScope','projectRisks',
-		function($scope,potentialRisks,riskFactors,$rootScope,projectRisks) {
+	.controller("mainCtrl",['$scope','potentialRisks','riskFactors','$rootScope','projectRisks','counterMeasures',
+		function($scope,potentialRisks,riskFactors,$rootScope,projectRisks,counterMeasures) {
 		$scope.areRisks = false;
 		$scope.factors = [];
 		$scope.technicalRisks = [];
@@ -41,8 +41,31 @@ angular.module("riskApp",['ngAnimate','ui.router'])
 		$scope.potentialRisks = potentialRisks;
 	  	$scope.riskFactors = riskFactors;
 	  	$scope.projectRisks = projectRisks;
-
+	  	$scope.counterMeasures = counterMeasures;
 	  	$scope.prioritizationDisabled = true;
+
+	  	$scope.analyzedRiskIndex = 0;
+
+
+
+	  	$scope.selectedMeasure = "";
+	  	$scope.selectMeasure = function (str) {
+	  		$scope.selectedMeasure = str;
+	  	}
+	  	$scope.applyMeasure = function (i) {
+	  		$scope.analyzedRisks[i].measure = $scope.selectedMeasure;
+	  	}
+
+	  	$scope.analyzedRiskNext = function () {
+	  		if ($scope.analyzedRiskIndex == $scope.analyzedRisks.length-1) $scope.analyzedRiskIndex = 0;
+	  		else $scope.analyzedRiskIndex++;
+	  	}
+
+
+	  	$scope.analyzedRiskPrev = function () {
+	  		if ($scope.analyzedRiskIndex == 0) $scope.analyzedRiskIndex = $scope.analyzedRisks.length-1;
+	  		else $scope.analyzedRiskIndex--;
+	  	}
 
 	  	$scope.riskCounter = 0;
 
