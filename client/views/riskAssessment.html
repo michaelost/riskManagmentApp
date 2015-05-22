@@ -31,13 +31,13 @@
             <input  ng-model="risk.impact" ng-disabled="true"  type="text" class="form-control" id="inputProb" >
 			-->
 <br>
-<button class="btn btn-primary save" ng-disabled="riskForm.$invalid" ng-click="toPrioritization(projectRisks[riskCounter])" >зберегти</button>
+<button class="btn btn-primary save glyphicon glyphicon-plus-sign" ng-disabled="riskForm.$invalid" ng-click="toPrioritization(projectRisks[riskCounter])" >зберегти</button>
         	</div>
         </div>
 
 <div style="clear:both">
- <button class="btn btn-primary" ng-click="prev()">попередній</button>
- <button class="btn btn-primary" ng-click="next()" >наступний</button>
+ <button class="btn btn-primary glyphicon glyphicon-chevron-left" ng-click="prev()">попередній</button>
+ <button class="btn btn-primary glyphicon glyphicon-chevron-right" ng-click="next()" >наступний</button>
 </div>
 
 </form>
@@ -78,7 +78,7 @@
     </thead>
 </table>
 
-<button class="btn btn-primary prioritization" ng-click="prioritization()" ng-disabled="prioritizationDisabled">Приорітизувати ризики</button>
+<button class="btn btn-primary prioritization glyphicon glyphicon-sort-by-attributes-alt" ng-click="prioritization()" ng-disabled="prioritizationDisabled">Приорітизувати ризики</button>
 	
 </div>
 
@@ -89,5 +89,5 @@
 <div style="clear:both">
 <br>
 
-<button class="btn btn-primary getRisks" ng-hide="projectRisks.length == 0 && analyzedRisks.length!=0" ng-click="getProjectRisks()">отримати ризики</button>
+<button class="btn btn-primary getRisks glyphicon glyphicon-save" ng-hide="projectRisks.length == 0 && analyzedRisks.length!=0" ng-click="getProjectRisks()">отримати ризики</button>
 </div>
