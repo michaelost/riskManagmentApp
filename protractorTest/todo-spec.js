@@ -8,7 +8,7 @@ function riskMeasures(n) {
 		arr.push({
 			prob : prob,
 			cons : cons,
-			imp: (prob*1) * (cons*1)
+			imp: ((prob*1) * (cons*1)).toFixed(4)
 		});
 	}
 	return arr;
@@ -20,6 +20,7 @@ function sort (arr) {
 	var k,temp;
 	for(var i = 0; i < arr.length-1; i++) {
 		max = arr[i].imp;
+		k = i;
 		for(var j = i+1; j < arr.length; j++) {
 			if (arr[j].imp > max ) { max = arr[j].imp; k = j;  }
 		}
@@ -126,18 +127,25 @@ describe('Protractor Demo App', function() {
 					
 					element.all(by.css('.prioritization')).get(0).click().then(function () {
 						 var thS = element.all(by.css('th.riskProbCol'));
-						 var thSCons = element.all(by.css('th.riskConCol'))
-						var nArray = sort(secondTestArray);
+						 var thSCons = element.all(by.css('th.riskConCol'));
+						 var thImp = element.all(by.css('th.riskImCol'));
+						
 
 						console.log("nArray:");
+
+						
+						var nArray = sort(secondTestArray);
+					
 						for(var i = 0; i < nArray.length; i++) (function(i){
 							expect(thS.get(i).getText()).toEqual(nArray[i].prob);
-							/*
 							expect(thSCons.get(i).getText()).toEqual(nArray[i].cons);
-							*/
-						
+							expect(thImp.get(i).getText()).toEqual(nArray[i].imp);
+							
 						})(i);
 
+						
+						
+						
 							
 					});
 					

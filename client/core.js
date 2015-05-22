@@ -104,7 +104,7 @@ angular.module("riskApp",['ngAnimate','ui.router'])
 	  	$scope.toPrioritization = function (item) {
 
 	  		if(item.probability != undefined && item.consequences != undefined ) {
-	  			item.impact = item.probability * item.consequences;
+	  			item.impact = (item.probability * item.consequences).toFixed(4);
 	  		}
 
 	  		$scope.analyzedRisks.unshift(item);
