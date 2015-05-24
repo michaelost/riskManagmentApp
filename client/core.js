@@ -43,28 +43,43 @@ angular.module("riskApp",['ngAnimate','ui.router'])
 	  	$scope.projectRisks = projectRisks;
 	  	$scope.counterMeasures = counterMeasures;
 	  	$scope.prioritizationDisabled = true;
-
+	  	$scope.areRisksAnalyzed = false;
 	  	$scope.analyzedRiskIndex = 0;
 
 
 
+	  	$scope.measuresCount = 0;
 	  	$scope.selectedMeasure = "";
 	  	$scope.selectMeasure = function (str) {
 	  		$scope.selectedMeasure = str;
+
+
 	  	}
+
+	  	$scope.cancelMeasure = function (item) {
+	  		item.measure = "";
+	  		$scope.measuresCount--;
+	  	}
+
 	  	$scope.applyMeasure = function (i) {
 	  		$scope.analyzedRisks[i].measure = $scope.selectedMeasure;
+	  		$scope.analyzedRiskNext();
+	  		$scope.measuresCount++;
+	  		$scope.selectedMeasure = "";
 	  	}
 
 	  	$scope.analyzedRiskNext = function () {
 	  		if ($scope.analyzedRiskIndex == $scope.analyzedRisks.length-1) $scope.analyzedRiskIndex = 0;
 	  		else $scope.analyzedRiskIndex++;
+	  	
 	  	}
 
 
 	  	$scope.analyzedRiskPrev = function () {
+	  		
 	  		if ($scope.analyzedRiskIndex == 0) $scope.analyzedRiskIndex = $scope.analyzedRisks.length-1;
 	  		else $scope.analyzedRiskIndex--;
+	  		
 	  	}
 
 	  	$scope.riskCounter = 0;
@@ -99,6 +114,8 @@ angular.module("riskApp",['ngAnimate','ui.router'])
 	  				$scope.managmentRiscks.push(item);
 	  				break;
 	  			}
+
+	  			window.location.href = "http://localhost:5000/#/main/riskAssessment";
 	  		});
 	  		
 	  		$scope.projectRisks = $scope.technicalRisks.concat($scope.costRisks).concat($scope.planRisks).concat($scope.managmentRiscks);
@@ -119,6 +136,7 @@ angular.module("riskApp",['ngAnimate','ui.router'])
 
 	  		console.log(projectRisks.getRisks());
 	  		projectRisks.prioritize();
+	  		$scope.areRisksAnalyzed = true;
 	  	}
 
 
@@ -128,6 +146,7 @@ angular.module("riskApp",['ngAnimate','ui.router'])
 
 	  		if(item.probability != undefined && item.consequences != undefined ) {
 	  			item.impact = (item.probability * item.consequences).toFixed(4);
+	  			item.measure = "";
 	  		}
 
 	  		$scope.analyzedRisks.unshift(item);

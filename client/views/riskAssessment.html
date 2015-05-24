@@ -7,7 +7,7 @@
 <div ng-show="areRisks && projectRisks.length">
 
 <form  name="riskForm" class="form form-horizontal" novalidate>
-		<legend>({{riskCounter+1}}) {{projectRisks[riskCounter].description}}</legend>
+		<legend class="desc">({{riskCounter+1}}) {{projectRisks[riskCounter].description}}</legend>
 		<div class="col-md-4">
 
 			<div class="form-group" ng-class="{ 'has-error' : riskForm.name.$invalid && !riskForm.name.$pristine }">
@@ -93,13 +93,16 @@
 </div>
 
 <!-- //risk countermeasures -->
-<div class="col-md-6">
+<div class="col-md-6" ng-show="areRisksAnalyzed">
     <legend>Визначення заходів для ризиків</legend>
     Поточний ризик:<br> 
-    {{analyzedRisks[analyzedRiskIndex].description}}<br>
+    <div class="currentRisk">{{analyzedRisks[analyzedRiskIndex].description}}</div>
     Обраний захід:
-    <legend>{{selectedMeasure}}</legend>
-
+    <legend class="currentMeasure" ng-show="analyzedRisks[analyzedRiskIndex].measure!=0" >{{ analyzedRisks[analyzedRiskIndex].measure}}</legend>
+    <legend ng-hide="analyzedRisks[analyzedRiskIndex].measure!=0" >Не обрано</legend>
+    Замінити на:<br>
+    <lenend ng-show="selectedMeasure== '' " >Не обрано</lenend>
+    <legend class="selected" ng-show="selectedMeasure != '' " >{{selectedMeasure}}</legend><br>
      <button class="btn btn-primary glyphicon glyphicon-chevron-left" ng-click="analyzedRiskPrev()">попередній</button>
      <button class="btn btn-primary glyphicon glyphicon-chevron-right" ng-click="analyzedRiskNext()">наступний</button>
      <button class="btn btn-primary glyphicon glyphicon-ok" ng-click="applyMeasure(analyzedRiskIndex)">застосувати</button>
@@ -118,8 +121,12 @@
 
 </div>
 
-<div class="col-md-6">
+<div class="col-md-6" ng-show="areRisksAnalyzed">
 <legend>Заходи з пом’якшення</legend>
-<div ng-repeat="r in analyzedRisks">{{r.measure}}</div>
+<div ng-repeat="r in analyzedRisks" ng-hide="r.measure == '' " ng-click="cancelMeasure(r)" >
+    <div class=".col-md-2 measure" ng-class="r.prioritet" >{{r.measure}}</div>
+    
+    
+</div>
 
 </div>
