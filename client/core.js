@@ -70,6 +70,9 @@ angular.module("riskApp",['ngAnimate','ui.router'])
 	  		console.log("projects ---" + $scope.projects);
 	  	}
 
+	  	$scope.setProjectToSave = function (name) {
+	  		$scope.projectName = name
+	  	}
 
 	  	/*save project*/
 	  	$scope.saveProject = function (){
@@ -82,6 +85,20 @@ angular.module("riskApp",['ngAnimate','ui.router'])
 	  		$scope.getProjectList();
 	  	}
 
+	  	$scope.loadProject = function (project) {
+	  		$http({
+	  			url: '/loadProject',
+	  			method: 'GET',
+	  			params: { name : project }
+	  		}).success(function (data) {
+	  			$scope.projectRisks = data[0].projectRisks;
+	  			$scope.analyzedRisks = data[0].analyzedRisks;
+	  			$scope.areRisks = true;
+	  			if($scope.projectRisks.length == 0 && $scope.analyzedRisks.length!=0) {
+	  				$scope.prioritizationDisabled = false;
+	  			}
+	  		});
+	  	} 
 	  	
 
 

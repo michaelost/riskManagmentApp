@@ -67,6 +67,20 @@ app.get("/projects", function (req,res) {
 });
 
 
+app.get('/loadProject', function (req,res) {
+	console.log(req.param);
+	Project.find({name: req.param('name') }, function(err,data){
+		console.log("data");
+		console.log(data);
+		if(err) {
+
+		}else 
+			res.send(data);
+	})
+});
+
+
+
 app.get("/",function(res,res) {
 	res.sendfile("./client/index.html");
 })

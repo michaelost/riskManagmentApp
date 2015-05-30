@@ -1,5 +1,34 @@
 
 
+<div class="projectMenu" class="col-md-4">
+    <ul><li ng-click="projectMenuActive()" >Проект...</li></ul>
+
+    <ul ng-show="isMenuActive" >
+        <li>Зберегти
+            <ul>
+                <li>введіть назву проекту:</li>
+                <li><input type="text" class="form-control" ng-model="projectName"></li>
+                <li>або оберіть з існуючих:</li>
+                <li ng-repeat="project in projects" class="projectItem" ng-click="setProjectToSave(project)" >{{project}}</li>        
+                <li><button ng-click="saveProject()"  class="btn btn-primary" ng-disabled="projectName == '' ">зберегти проект</button>
+                </li>
+
+            </ul>
+        </li>
+        
+        <li>Відкрити:
+            <ul>
+                <li  ng-repeat="project in projects" ng-click="loadProject(project)">{{project}}</li>
+            </ul>
+        </li>
+
+    </ul>
+
+
+</div>
+
+
+
 
 <div class="col-md-6" >
 
@@ -94,34 +123,7 @@
 
 
 
-<div class="projectMenu">
-    <ul><li ng-click="projectMenuActive()" >Проект...</li></ul>
 
-    <ul ng-show="isMenuActive" >
-        <li>Зберегти
-            <ul>
-                <li>введіть назву проекту:</li>
-                <li><input type="text" class="form-control" ng-model="projectName"></li>
-                <li>або оберіть з існуючих:</li>
-                <li ng-repeat="project in projects">{{project}}</li>        
-                <li><button ng-click="saveProject()"  class="btn btn-primary" ng-disabled="projectName == '' ">зберегти проект</button>
-                </li>
-
-            </ul>
-        </li>
-        
-        <li>Відкрити:
-            <ul>
-                <li ng-repeat="project in projects">{{project}}</li>
-            </ul>
-        </li>
-
-    </ul>
-
-
-    
-
-</div>
 
 
 
