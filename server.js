@@ -46,6 +46,12 @@ var Project = mongoose.model('Project');
 	
 app.post("/saveProject",function(req,res) {
 	
+
+	Project.remove({name: req.body.name}, function (err) {
+		if (err) console.log(err);
+	});
+
+
 	project = new Project({
 		name: req.body.name,
 		projectRisks: req.body.projectRisks,
