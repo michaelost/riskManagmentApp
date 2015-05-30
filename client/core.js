@@ -30,8 +30,8 @@ angular.module("riskApp",['ngAnimate','ui.router'])
 			
 	})
 
-	.controller("mainCtrl",['$scope','potentialRisks','riskFactors','$rootScope','projectRisks','counterMeasures',
-		function($scope,potentialRisks,riskFactors,$rootScope,projectRisks,counterMeasures) {
+	.controller("mainCtrl",['$scope','potentialRisks','riskFactors','$rootScope','projectRisks','counterMeasures','$http',
+		function($scope,potentialRisks,riskFactors,$rootScope,projectRisks,counterMeasures,$http) {
 		$scope.areRisks = false;
 		$scope.factors = [];
 		$scope.technicalRisks = [];
@@ -45,9 +45,9 @@ angular.module("riskApp",['ngAnimate','ui.router'])
 	  	$scope.prioritizationDisabled = true;
 	  	$scope.areRisksAnalyzed = false;
 	  	$scope.analyzedRiskIndex = 0;
+	  	$scope.projectName="";
 
-
-
+	  	$scope.projects = [];
 	  	$scope.measuresCount = 0;
 	  	$scope.selectedMeasure = "";
 	  	$scope.selectMeasure = function (str) {
@@ -55,6 +55,35 @@ angular.module("riskApp",['ngAnimate','ui.router'])
 
 
 	  	}
+
+	  	$scope.isMenuActive = false;
+	  	$scope.projectMenuActive = function () {
+	  		$scope.getProjectList();
+	  		$scope.isMenuActive = !$scope.isMenuActive;
+	  	}
+
+
+	  	$scope.getProjectList = function () {
+	  		$http.get('/projects').success(function (data, status, headers, config) {
+	  			$scope.projects = data;
+	  		});
+	  		console.log("projects ---" + $scope.projects);
+	  	}
+
+
+	  	/*save project*/
+	  	$scope.saveProject = function (){
+	  		$http.post('/saveProject',{
+	  			name: $scope.projectName,
+	  			projectRisks: $scope.projectRisks,
+	  			analyzedRisks: $scope.analyzedRisks
+	  		
+	  		});
+	  		$scope.getProjectList();
+	  	}
+
+	  	
+
 
 	  	$scope.cancelMeasure = function (item) {
 	  		item.measure = "";

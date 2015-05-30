@@ -4,6 +4,30 @@ var mongoose = require("mongoose");
 var morgan  =  require("morgan");
 var bodyParser = require("body-parser");
 var methodOverride = require("method-override");
+var fs = require('fs');
+var projects = require('./models/projects.js');
+
+mongoose.connect('mongodb://michaelost:123qweasdzxcv@ds029541.mongolab.com:29541/mydatabase');
+mongoose.connection.on('connected', function () {
+
+	console.log("connected succesfully...");
+/*
+	var Risk = mongoose.model('Risk'),
+		risk = new Risk({
+			description: "sad",
+			checked: true,
+			probability: 0.22,
+			consequences: 0.22,
+			impact: 0.22,
+			category: ""
+		});
+		risk.save();
+
+*/
+
+});
+
+
 
 
 
@@ -18,8 +42,32 @@ app.use(bodyParser.json({type: 'application/vnd.api+json'}));
 app.use(methodOverride());
 
 
+var Project = mongoose.model('Project');
+	
+app.post("/saveProject",function(req,res) {
+	
+	project = new Project({
+		name: req.body.name,
+		projectRisks: req.body.projectRisks,
+		analyzedRisks : req.body.analyzedRisks,
+	})
+	project.save();
+});
 
-app.get("*",function(res,res) {
+app.get("/projects", function (req,res) {
+	var projectNames = [];
+	Project.find({},function (err,data) {
+		for(var i = 0; i < data.length; i++) {
+			projectNames.push(data[i].name);
+		}
+	
+	res.send(projectNames);
+	});
+	
+});
+
+
+app.get("/",function(res,res) {
 	res.sendfile("./client/index.html");
 })
 

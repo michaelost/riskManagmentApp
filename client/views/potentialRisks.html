@@ -1,4 +1,7 @@
 <h2>Визначення потенційних ризиків</h2>
+
+<h3>Джерела ризиків:</h3>
+<div ng-repeat="f in factors" >{{f}}</div>
 <div ng-repeat="r in potentialRisks">
 		<input type="checkbox" ng-model="r.checked" ng-checked="r.checked" >{{r.description}}		
 	</div>

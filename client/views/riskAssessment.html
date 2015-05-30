@@ -92,6 +92,39 @@
 <button class="btn btn-primary getRisks glyphicon glyphicon-save" ng-hide="projectRisks.length == 0 && analyzedRisks.length!=0" ng-click="getProjectRisks()">отримати ризики</button>
 </div>
 
+
+
+<div class="projectMenu">
+    <ul><li ng-click="projectMenuActive()" >Проект...</li></ul>
+
+    <ul ng-show="isMenuActive" >
+        <li>Зберегти
+            <ul>
+                <li>введіть назву проекту:</li>
+                <li><input type="text" class="form-control" ng-model="projectName"></li>
+                <li>або оберіть з існуючих:</li>
+                <li ng-repeat="project in projects">{{project}}</li>        
+                <li><button ng-click="saveProject()"  class="btn btn-primary" ng-disabled="projectName == '' ">зберегти проект</button>
+                </li>
+
+            </ul>
+        </li>
+        
+        <li>Відкрити:
+            <ul>
+                <li ng-repeat="project in projects">{{project}}</li>
+            </ul>
+        </li>
+
+    </ul>
+
+
+    
+
+</div>
+
+
+
 <!-- //risk countermeasures -->
 <div class="col-md-6" ng-show="areRisksAnalyzed">
     <legend>Визначення заходів для ризиків</legend>
