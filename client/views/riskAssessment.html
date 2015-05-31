@@ -1,11 +1,11 @@
 
 
-<div class="projectMenu" class="col-md-4">
+<div class="projectMenu" >
     <ul><li ng-click="projectMenuActive()" >Проект...</li></ul>
 
-    <ul ng-show="isMenuActive" >
-        <li>Зберегти
-            <ul>
+    <ul ng-show="isMenuActive" class="ProjectSubMenu" >
+        <li class="sub" ng-click="saveShow = true">Зберегти
+            <ul ng-show="saveShow" >
                 <li>введіть назву проекту:</li>
                 <li><input type="text" class="form-control" ng-model="projectName"></li>
                 <li>або оберіть з існуючих:</li>
@@ -16,8 +16,8 @@
             </ul>
         </li>
         
-        <li>Відкрити:
-            <ul>
+        <li class="sub" ng-click="openShow = !openShow" ng-click="saveShow = false" >Відкрити:
+            <ul ng-show="openShow" class="openItem">
                 <li  ng-repeat="project in projects" ng-click="loadProject(project)">{{project}}</li>
             </ul>
         </li>

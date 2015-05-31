@@ -56,6 +56,9 @@ angular.module("riskApp",['ngAnimate','ui.router'])
 
 	  	}
 
+	  	$scope.saveShow = false;
+	  	$scope.openShow = false;
+
 	  	$scope.isMenuActive = false;
 	  	$scope.projectMenuActive = function () {
 	  		$scope.getProjectList();
